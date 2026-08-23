@@ -1,0 +1,6 @@
+{
+  "name": "LearnIQ",
+  "description": "AI-Powered Personalized Learning & Study Intelligence System with Concept Detective, SkillGraph knowledge network, and ForgetMeNot predictive spaced retention.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
