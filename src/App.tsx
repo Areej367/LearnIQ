@@ -137,17 +137,21 @@ export const App: React.FC = () => {
     );
   };
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
   // Navigation Helpers
   const handleStartQuizOnConcept = (concept: ConceptNode) => {
     setConceptForQuiz(concept);
     setSelectedConcept(concept);
     setActiveTab('practice');
+    setIsMobileMenuOpen(false);
   };
 
   const handleOpenAITutorWithConcept = (concept: ConceptNode) => {
     setConceptForTutor(concept);
     setSelectedConcept(concept);
     setActiveTab('aitutor');
+    setIsMobileMenuOpen(false);
   };
 
   const handleAddSubject = (newSub: Partial<Subject>) => {
@@ -165,10 +169,15 @@ export const App: React.FC = () => {
       {/* Left Navigation Sidebar */}
       <Sidebar
         activeTab={activeTab}
-        onSelectTab={setActiveTab}
+        onSelectTab={(tab) => {
+          setActiveTab(tab);
+          setIsMobileMenuOpen(false);
+        }}
         role={role}
         overdueRevisionCount={overdueCount}
         weakConceptCount={weakCount}
+        isMobileOpen={isMobileMenuOpen}
+        onCloseMobile={() => setIsMobileMenuOpen(false)}
       />
 
       {/* Main Content Stage */}
@@ -190,6 +199,7 @@ export const App: React.FC = () => {
             handleStartQuizOnConcept(weakOne);
           }}
           onOpenAITutor={() => setActiveTab('aitutor')}
+          onToggleMobileMenu={() => setIsMobileMenuOpen((prev) => !prev)}
         />
 
         {/* Scrollable View Canvas */}
